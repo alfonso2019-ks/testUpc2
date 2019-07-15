@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>TEMA</ion-title>
+    <ion-buttons slot="end">
+        <ion-button  color="danger" (click)="dismiss()" shape="round">
+            <ion-icon name="close" slot="icon-only"></ion-icon>
+         </ion-button>
+    </ion-buttons>
+  </ion-toolbar> 
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="formTema">
+    <ion-list>
+      <ion-item>
+          <ion-text color = "primary">
+              <h1>Registrar tema</h1>
+            </ion-text>
+      </ion-item>
+      <ion-item>
+          <ion-label position="floating">Nombre del tema</ion-label>
+          <ion-input type="text" formControlName="nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label position="floating">Descripción del tema</ion-label>
+          <ion-textarea type="text" formControlName="descripcion"></ion-textarea>
+      </ion-item>
+      <ion-button expand="block">
+          Agregar tema
+        </ion-button>
+    </ion-list>
+  </form>
+</ion-content>
