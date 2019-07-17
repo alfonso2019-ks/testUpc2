@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import {AngularFirestore, AngularFirestoreModule, AngularFirestoreCollection} from '@angular/fire/firestore';
 import { IAsignatura } from '../interfaz/interface';
 import { Observable } from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BdService {
 
-  listaInterfax: AngularFirestoreCollection<[]>;
+  listaInterfax: AngularFirestoreCollection;
 
   constructor(public firestore:AngularFirestore) { }
 
@@ -17,16 +18,15 @@ export class BdService {
     return this.firestore.collection(tabla).add(interfax);
   }
 
-  /*public getList(tabla: string, interfaces):Observable<[]> {
-    this.listaInterfax = this.firestore.collection<interfaces>(tabla);
-    interfaces = this.listaInterfax.snapshotChanges().map(List=>{
+  public getList(tabla: string) {
+    let obj;
+    this.listaInterfax = this.firestore.collection(tabla);
+    return this.listaInterfax.snapshotChanges().pipe( map(List=>{
         return List.map(event=>{
-            return {
-                nombre:event.payload.doc.data().nombre,
-                id:event.payload.doc.id
-            }
+          obj = event.payload.doc.data();
+          obj.id = event.payload.doc.id;
+          return obj;
         })
-    });
-    return this.interfaces;
-  }*/
+    }));
+  }
 }

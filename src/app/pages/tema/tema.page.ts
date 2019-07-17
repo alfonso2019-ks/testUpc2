@@ -40,14 +40,13 @@ export class TemaPage implements OnInit {
   }
 
   dismiss() {
-    // using the injected ModalController this page
-    // can "dismiss" itself and optionally pass back data
     this.modalController.dismiss({
       'dismissed': true
     });
   }
 
-  public agregarTema(){
+  //nuevo pruebas
+  public agregarTema(id){
     this.tema = this.temaJSON(this.formTema);
     this.bd.add('tema',this.tema).then(()=>{
       this.mensaje('tema guardada correctamente',3000);

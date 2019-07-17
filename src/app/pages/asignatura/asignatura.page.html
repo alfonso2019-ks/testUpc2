@@ -1,8 +1,6 @@
 <ion-header>
   <ion-toolbar>
-      <ion-text color = "primary">
-          <h1>Registrar asignatura</h1>
-        </ion-text>
+    <ion-title color="primary" >Registrar asignatura</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -26,15 +24,15 @@
             <ion-title>Consultar asignatura :</ion-title>
             <ion-input type="text"></ion-input>
         </ion-item>
-      <ng-container *ngFor="let asignatura of asignaturas">
-        <ion-list>
-              <ion-label ion-text >{{asignatura.nombre}}</ion-label>
-              <ion-button eshape="round"(click)="presentModal()">
-                  + Temas
-                </ion-button>
-        </ion-list>
-      </ng-container>
     </ion-list>
+    <ion-list>
+        <ion-item *ngFor="let asignatura of asignaturas">
+            <ion-label ion-text >{{asignatura.nombre}}</ion-label>
+            <ion-button shape="round" (click)="presentModal(asignatura.codigo_Asignatura)">
+                + Temas
+              </ion-button>
+        </ion-item>
+      </ion-list>
   </div>
  
 </ion-content>

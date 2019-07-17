@@ -13,8 +13,8 @@ import { BdService } from "../../services/bd.service";
 export class AsignaturaPage implements OnInit {
 
   formAsignatura: FormGroup;
-  asignatura: IAsignatura;
-  asignaturas: IAsignatura;
+  asignatura: IAsignatura = <IAsignatura>{};
+  asignaturas: IAsignatura[] = [];
 
   constructor(
     public modalController: ModalController,
@@ -23,6 +23,7 @@ export class AsignaturaPage implements OnInit {
     public bd: BdService
     ) {
     this.formAsignatura = this.crearFormulario();
+    this.listaAsignatura();
   }
 
   private crearFormulario(){
@@ -39,7 +40,7 @@ export class AsignaturaPage implements OnInit {
       nombre: formTema.get('nombre').value  
     }as IAsignatura
   }
-
+  //juepa
   async presentModal() {
     const modal = await this.modalController.create({
       component: TemaPage
@@ -55,6 +56,16 @@ export class AsignaturaPage implements OnInit {
       this.asignatura = null;
     }).catch(()=>{
       this.mensaje('No se pudo guardar la asignatura',3000);
+    });
+  }
+
+  public listaAsignatura(){
+    this.bd.getList("asignatura").subscribe((listAsig: IAsignatura[])=>{
+      let asign = [];
+      listAsig.forEach(element => {
+        asign.push(element);
+      });
+      this.asignaturas = asign;
     });
   }
   
