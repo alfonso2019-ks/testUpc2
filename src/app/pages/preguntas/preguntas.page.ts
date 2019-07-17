@@ -31,7 +31,7 @@ export class PreguntasPage implements OnInit {
     this.tipo = e.detail.value;
   }
   addOpcion(){
-    let grupoRadio = document.getElementById('radiOpcion');
+    // let grupoRadio = document.getElementById('radiOpcion');
     this.arregloRadio.push(+1);
     // this.arregloRadio++;
     console.log(this.arregloRadio);
