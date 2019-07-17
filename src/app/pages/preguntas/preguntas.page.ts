@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
-import { IPregunta } from 'src/app/interfaces/interface';
+import { IPregunta } from 'src/app/interfaz/interface';
+import { BdService } from 'src/app/services/bd.service';
 
 @Component({
   selector: 'app-preguntas',
@@ -15,7 +16,7 @@ export class PreguntasPage implements OnInit {
   arrayPreguntas: IPregunta[] = [];
   pregunta: IPregunta = <IPregunta>{};
   opciones: string[] = [];
-  constructor(toast: ToastController) { }
+  constructor(toast: ToastController, private bd: BdService) { }
 
   ngOnInit() {
   }
@@ -47,6 +48,7 @@ export class PreguntasPage implements OnInit {
     } else {
       this.pregunta.opciones = this.opciones;
     }
+    this.bd.add('preguntas', this.pregunta);
     this.arrayPreguntas.push(this.pregunta);
     this.pregunta = <IPregunta>{};
     this.opciones = [];
