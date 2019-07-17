@@ -1,0 +1,83 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-title>preguntas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <div [ngSwitch]="segment">
+      <ion-card *ngSwitchCase="'add'">
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-label>Tipo de pregunta</ion-label>
+                <ion-select interface="popover" placeholder="Seleccionar tipo" (ionChange)="getTipo($event)">
+                  <ion-select-option value="1">Verbadero y falso</ion-select-option>
+                  <ion-select-option value="2" selected>Selección multiple unica respuesta</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Pregunta: </ion-label>
+                <ion-textarea [(ngModel)]="pregunta.descipcion"></ion-textarea>
+              </ion-item>
+              <ng-container *ngIf="tipo == 2">
+                <ion-radio-group name="auto" (ionChange)="show($event)">
+                  <ion-list id="radiOpcion">
+                      <ion-item *ngFor="let item of arregloRadio; let i = index">
+                          <ion-input type="text" placeholder="Opción {{i+1}}" [(ngModel)]="opciones[i]"></ion-input>
+                          <ion-radio value="{{i+1}}" slot="start"></ion-radio>
+                          <ion-icon slot="end" name="close" (click)="borrarOpc(i)"></ion-icon>
+                      </ion-item>
+                  </ion-list>
+                </ion-radio-group>
+                <ion-item (click)="addOpcion()">
+                    <ion-label>Agregar Otra opción</ion-label>
+                    <ion-icon name="radio-button-off" slot="start"></ion-icon>
+                </ion-item>
+              </ng-container>
+              <ng-container *ngIf="tipo == 1">
+                  <ion-radio-group name="auto" (ionChange)="show($event)">
+                    <ion-list id="radioVF">
+                        <ion-item>
+                            <ion-label>Verdadeo</ion-label>
+                            <ion-radio value="1" slot="start"></ion-radio>
+                        </ion-item>
+                        <ion-item>
+                          <ion-label>Falso</ion-label>
+                          <ion-radio value="0" slot="start"></ion-radio>
+                      </ion-item>
+                    </ion-list>
+                  </ion-radio-group>
+              </ng-container>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+
+      <ng-container *ngSwitchCase="'show'">
+          <ion-list>
+            <ion-item *ngFor="let pre of arrayPreguntas; let i = index">
+                <ion-badge slot="start">{{i+1}}</ion-badge>
+              <ion-label>{{pre.descipcion}}</ion-label>
+            </ion-item>
+          </ion-list>
+      </ng-container>
+    </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="segment=='add'">
+    <ion-fab-button (click)="add()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+<ion-footer no-border>
+  <ion-toolbar>
+      <ion-segment (ionChange)="selectSement($event)" value="add">
+        <ion-segment-button value="add">
+          <ion-label>Agregar Preguntas</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="show">
+          <ion-label>Preguntas</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+  </ion-toolbar>
+</ion-footer>

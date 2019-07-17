@@ -33,8 +33,18 @@ export class AsignaturaPage implements OnInit {
   }
 
   ngOnInit() {
+    this.loadAsignatura();
   }
 
+  public loadAsignatura(){
+    this.bd.getList('asignatura').subscribe((listAsig: IAsignatura[]) => {
+      let asign = [];
+      listAsig.forEach(asig => {
+        asign.push(asig);
+      });
+      this.asignaturas = asign;
+    })
+  }
   public asignaturaJSON(formTema:FormGroup){
     return{
       nombre: formTema.get('nombre').value  
