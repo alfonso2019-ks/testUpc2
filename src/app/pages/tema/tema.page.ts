@@ -46,7 +46,7 @@ export class TemaPage implements OnInit {
   }
 
   //nuevo pruebas
-  public agregarTema(id){
+  public agregarTema(id: string){
     this.tema = this.temaJSON(this.formTema);
     this.bd.add('tema',this.tema).then(()=>{
       this.mensaje('tema guardada correctamente',3000);

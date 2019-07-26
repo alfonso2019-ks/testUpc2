@@ -1,18 +1,13 @@
-<<<<<<< HEAD
-<ion-header>
-  <ion-toolbar>
-    <ion-title color="primary" >Registrar asignatura</ion-title>
-=======
+
 <ion-header no-border>
   <ion-toolbar mode="ios">
     <ion-title color="primary">Registrar asignatura</ion-title>
->>>>>>> 67c1fb8dfaf7a060cf702f6e05e9903d3da364ad
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <!-- MK -->
-    <form [formGroup]="formAsignatura">
+    <form [formGroup]="formAsignatura" *ngIf="">
       <ion-list>
         <ion-item>  
             <ion-label position="floating">Nombre de la asignatura</ion-label>
@@ -30,9 +25,6 @@
             <ion-title>Consultar asignatura :</ion-title>
             <ion-input type="text"></ion-input>
         </ion-item>
-<<<<<<< HEAD
-=======
-
     </ion-list>
     <ion-list>
         <ion-item *ngFor="let asignatura of asignaturas">
@@ -42,16 +34,7 @@
               <ion-icon slot="start" name="add"></ion-icon>
           </ion-button>
         </ion-item>
->>>>>>> 67c1fb8dfaf7a060cf702f6e05e9903d3da364ad
     </ion-list>
-    <ion-list>
-        <ion-item *ngFor="let asignatura of asignaturas">
-            <ion-label ion-text >{{asignatura.nombre}}</ion-label>
-            <ion-button shape="round" (click)="presentModal(asignatura.codigo_Asignatura)">
-                + Temas
-              </ion-button>
-        </ion-item>
-      </ion-list>
   </div>
  
 </ion-content>
