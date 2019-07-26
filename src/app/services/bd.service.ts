@@ -37,4 +37,7 @@ export class BdService {
         })
     }));
   }
+  public getDato(tabla: string, id: string){
+    return this.firestore.collection(tabla).doc(id).valueChanges();
+  }
 }

@@ -3,6 +3,8 @@ import { ToastController, ModalController } from "@ionic/angular";
 import { Router } from '@angular/router';
 import { LogueoService } from 'src/app/services/logueo.service';
 import { GlobalService } from 'src/app/services/global.service';
+import { BdService } from 'src/app/services/bd.service';
+import { IPersona } from 'src/app/interfaz/interface';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,7 @@ export class LoginPage implements OnInit {
     user: '',
     pass: ''
   }
-  constructor(private route: Router, private modal: ModalController, private logueo: LogueoService, private global: GlobalService) { }
+  constructor(private route: Router, private modal: ModalController, private logueo: LogueoService, private global: GlobalService, private bd: BdService) { }
 
   ngOnInit() {
   }
@@ -26,7 +28,12 @@ export class LoginPage implements OnInit {
 
   loguearse(){
     const user = `${this.user.user}@unicesar.edu.co`
-    this.logueo.loginUser(user, this.user.pass).then(_=>this.route.navigate(['/preguntas']))
+    this.logueo.loginUser(user, this.user.pass).then((auth)=>{
+      this.bd.getDato('persona', auth.user.uid).subscribe((per: IPersona)=>{
+        this.global.persona = per;
+        this.route.navigate(['/menu']);
+      })
+    })
     .catch(_=>this.global.mensaje('Usuario y/o contraseña incorrecta', 3000, 'danger'))
   }
 
