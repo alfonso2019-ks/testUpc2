@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>docentes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <div [ngSwitch]="segment">
+      <div *ngSwitchCase="'add'">
+          <form [formGroup]="formAdd" (submit)="add()" novalidate>
+              <ion-list>
+                <ion-item>
+                  <ion-label position="floating">Primer Nombre</ion-label>
+                  <ion-input type="text" formControlName="pName"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Segundo Nombre</ion-label>
+                  <ion-input type="text" formControlName="sName"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Primer Apellido</ion-label>
+                  <ion-input type="text" formControlName="pLastName"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Segundo Apellido</ion-label>
+                  <ion-input type="text" formControlName="sLastName"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Teléfono</ion-label>
+                  <ion-input type="tel" formControlName="tel"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Usuario</ion-label>
+                  <ion-input type="text" formControlName="user"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Contraseña</ion-label>
+                  <ion-input type="password" formControlName="pass"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Rol</ion-label>
+                  <p start="end">Docente</p>
+                </ion-item>
+              </ion-list>
+              <ion-button expand="block" shape="round" type="submit">
+                Registrarse
+              </ion-button>
+            </form>
+      </div>
+      <div *ngSwitchCase="'show'">
+        <ion-list>
+          <ion-item-sliding  *ngFor="let docente of docentes; let i = index" #slidingItem>
+            <ion-item lines="none">
+                <ion-label>{{docente.primerNombre}} {{docente.primerApellido}}</ion-label>
+            </ion-item>
+            <ion-item-options side="start" (ionSwipe)="delete(slidingItem,docente, i)">
+                <ion-item-option (click)="delete(slidingItem,docente, i)" color="ligth"><ion-icon name="trash" slot="icon-only" color="danger"></ion-icon></ion-item-option>
+            </ion-item-options>
+            <ion-item-options side="end" (ionSwipe)="editar(slidingItem, docente, i)">
+                <ion-item-option (click)="editar(slidingItem, docente, i)" color="ligth"><ion-icon name="create" slot="icon-only" color="tertiary"></ion-icon></ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </div>
+    </div>
+</ion-content>
+<ion-footer no-border>
+  <ion-toolbar>
+      <ion-segment (ionChange)="selectSement($event)" value="add">
+        <ion-segment-button value="add">
+          <ion-label>Agregar Docente</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="show">
+          <ion-label>Docentes</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+  </ion-toolbar>
+</ion-footer>

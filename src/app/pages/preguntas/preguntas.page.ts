@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
-import { IPregunta } from 'src/app/interfaz/interface';
+import { IPregunta, IAsignatura, ITema } from 'src/app/interfaz/interface';
 import { BdService } from 'src/app/services/bd.service';
 
 @Component({
@@ -16,18 +16,18 @@ export class PreguntasPage implements OnInit {
   arrayPreguntas: IPregunta[] = [];
   pregunta: IPregunta = <IPregunta>{};
   opciones: string[] = [];
+  asignaturas: IAsignatura[] = [];
   constructor(toast: ToastController, private bd: BdService) { }
 
   ngOnInit() {
+    this.loadAsignatura();
   }
 
   show(e){
-    console.log(e.detail.value);
     this.pregunta.respuesta = e.detail.value;
     this.preguntas.respuesta = e.detail.value;
   }
   getTipo(e){
-    console.log(e.detail.value)
     this.tipo = e.detail.value;
   }
   addOpcion(){
@@ -53,9 +53,18 @@ export class PreguntasPage implements OnInit {
     this.pregunta = <IPregunta>{};
     this.opciones = [];
     this.arregloRadio = [];
-    console.log(this.arrayPreguntas);
   }
   borrarOpc(i) {
     this.arregloRadio.splice(i,1);
+  }
+  loadAsignatura(){
+    this.bd.getList('asignatura').subscribe((asigs: IAsignatura[])=>{
+      // const asignaturas:IAsignatura[] = [];
+      this.asignaturas = [];
+      asigs.forEach(asig => {
+        this.asignaturas.push(asig);
+      });
+      
+    })
   }
 }

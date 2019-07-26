@@ -1,17 +1,17 @@
 export interface IAsignatura{
-    codigo_Asignatura: string;
+    id: string;
     nombre: string;
     temas: ITema[];
 }
 
 export interface ITema{
-    codigo_Tema: string;
+    id?: string;
     nombre: string;
     descripcion: string;
 }
 
 export interface IPregunta{
-    codigo_Pregunta: number;
+    id?: number;
     descipcion: string;
     opciones: string[];
     respuesta: number; 

@@ -28,8 +28,7 @@ export class BdService {
 
   public getList(tabla: string){
     let obj;
-    this.listaInterfax = this.firestore.collection(tabla);
-    return this.listaInterfax.snapshotChanges().pipe(map(List=>{
+    return this.firestore.collection(tabla).snapshotChanges().pipe(map(List=>{
         return List.map(event=>{
           obj = event.payload.doc.data(),
           obj.id = event.payload.doc.id
@@ -40,7 +39,17 @@ export class BdService {
   public getDato(tabla: string, id: string){
     return this.firestore.collection(tabla).doc(id).valueChanges();
   }
-  public update(){
-    
+  public selectWhereRol(tabla:string, cond: string, comp: number){
+    let obj;
+    let lista: AngularFirestoreCollection;
+    lista = this.firestore.collection(tabla, ref => ref.where(cond, '==', comp));
+    const dato = lista.snapshotChanges().pipe(map((List) => {
+        return List.map((dat) => {
+            obj = dat.payload.doc.data();
+            obj.id = dat.payload.doc.id;
+            return obj;
+        });
+    }));
+    return dato;
   }
 }

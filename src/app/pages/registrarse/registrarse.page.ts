@@ -35,12 +35,12 @@ export class RegistrarsePage implements OnInit {
   ngOnInit() {
     this.formAdd = new FormGroup({
       pName: new FormControl('', Validators.compose([Validators.required])),
-      sName: new FormControl('', Validators.compose([Validators.required])),
+      sName: new FormControl(''),
       pLastName: new FormControl('', Validators.compose([Validators.required])),
       sLastName: new FormControl('', Validators.compose([Validators.required])),
-      tel: new FormControl('', Validators.compose([Validators.required])),
+      tel: new FormControl('', Validators.compose([Validators.required, Validators.minLength(9), Validators.maxLength(9)])),
       user: new FormControl('', Validators.compose([Validators.required])),
-      pass: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
+      pass: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5)])),
     });
   }
   

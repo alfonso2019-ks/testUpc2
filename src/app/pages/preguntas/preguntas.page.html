@@ -7,7 +7,20 @@
 <ion-content>
 
     <div [ngSwitch]="segment">
-      <ion-card *ngSwitchCase="'add'">
+      <ng-container *ngSwitchCase="'add'">
+        <ion-item>
+          <ion-label>Asignatura</ion-label>
+          <ion-select placeholder="Seleccionar asignatura" interface="popover">
+            <ion-select-option *ngFor="let asig of asignaturas" value="asig.id" (ionChange)="getAsignatura($)">{{asig.nombre}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Temas</ion-label>
+          <ion-select placeholder="Seleccionar Tema" interface="popover">
+            <ion-select-option *ngFor="let tema of asignaturas" value="asig.id">{{asig.nombre}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-card>
           <ion-card-content>
             <ion-list>
               <ion-item>
@@ -53,7 +66,7 @@
             </ion-list>
           </ion-card-content>
         </ion-card>
-
+      </ng-container>
       <ng-container *ngSwitchCase="'show'">
           <ion-list>
             <ion-item *ngFor="let pre of arrayPreguntas; let i = index">

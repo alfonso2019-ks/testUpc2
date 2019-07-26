@@ -26,8 +26,8 @@ export class MenuPage implements OnInit {
   ];
   pagesDocente = [
     {
-      title: 'Docente',
-      url: '/menu/docente',
+      title: 'Realizar Preguntas',
+      url: '/menu/preguntas',
       icon: 'person'
     },{
       title: 'Asignatura',
@@ -35,7 +35,7 @@ export class MenuPage implements OnInit {
       icon: 'person'
     },{
       title: 'Resultados',
-      url: '/menu/estadistica',
+      url: '/menu/resultados',
       icon: 'person'
     },
   ];
@@ -57,6 +57,7 @@ export class MenuPage implements OnInit {
     switch (this.global.persona.rol) {
       case 0:
         this.pages = this.pagesEstudiante;
+        this.router.navigate(['menu/realizar-examen']);
       break;
       case 1:
         this.pages = this.pagesDocente;
