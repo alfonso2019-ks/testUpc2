@@ -25,8 +25,7 @@ export interface IExamen{
 }
 
 export interface IPersona{
-    cedula: string;
-    correo: string;
+    user: string;
     primerNombre: string;
     segundoNombre: string;
     primerApellido: string;
@@ -34,6 +33,6 @@ export interface IPersona{
     pass: string;
     estado: boolean;
     telefono: string;
-    rol: Number;
+    rol: number;
     id?: string;
 }

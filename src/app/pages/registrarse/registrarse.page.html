@@ -8,33 +8,39 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item>
-      <ion-label position="floating">Primer Nombre</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Segundo Nombre</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Primer Apellido</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Segundo Apellido</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Usuario</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password"></ion-input>
-    </ion-item>
-  </ion-list>
-  <ion-button expand="block" shape="round">
-    Registrarse
-  </ion-button>
+  <form [formGroup]="formAdd" (submit)="add()" novalidate>
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Primer Nombre</ion-label>
+        <ion-input type="text" formControlName="pName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Segundo Nombre</ion-label>
+        <ion-input type="text" formControlName="sName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Primer Apellido</ion-label>
+        <ion-input type="text" formControlName="pLastName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Segundo Apellido</ion-label>
+        <ion-input type="text" formControlName="sLastName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Teléfono</ion-label>
+        <ion-input type="tel" formControlName="tel"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Usuario</ion-label>
+        <ion-input type="text" formControlName="user"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" formControlName="pass"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="block" shape="round" type="submit">
+      Registrarse
+    </ion-button>
+  </form>
 </ion-content>

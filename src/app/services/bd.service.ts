@@ -13,8 +13,17 @@ export class BdService {
   constructor(public firestore:AngularFirestore) { }
 
 
-  public add(tabla: string, interfax ) {
-    return this.firestore.collection(tabla).add(interfax);
+  public add(tabla: string, datos, tipo?: number, id?: string) {
+    let collection;
+    switch (tipo) {
+      case 1:
+          collection = this.firestore.collection(tabla).doc(id).set(datos);
+        break;
+      default:
+          collection = this.firestore.collection(tabla).add(datos);
+        break;
+    }
+    return collection;
   }
 
   public getList(tabla: string){

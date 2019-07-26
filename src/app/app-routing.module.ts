@@ -6,7 +6,8 @@ const routes: Routes = [
   { path: 'asignatura', loadChildren: './pages/asignatura/asignatura.module#AsignaturaPageModule' },
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
   { path: 'registrarse', loadChildren: './pages/registrarse/registrarse.module#RegistrarsePageModule' },
-  { path: 'preguntas', loadChildren: './pages/preguntas/preguntas.module#PreguntasPageModule' },
+  { path: 'preguntas', loadChildren: './pages/preguntas/preguntas.module#PreguntasPageModule' },  { path: 'menu', loadChildren: './pages/menu/menu.module#MenuPageModule' },
+
   //{ path: 'tema', loadChildren: './tema/tema.module#TemaPageModule' },
 ];
 
